@@ -1,12 +1,12 @@
 django-cms<3.3
 django-treebeard>=2.0
 
-https://github.com/divio/djangocms-column/archive/master.zip?1449652964.68
-https://github.com/divio/djangocms-flash/archive/master.zip?1449652964.68
-https://github.com/divio/djangocms-googlemap/archive/master.zip?1449652964.68
-https://github.com/divio/djangocms-inherit/archive/master.zip?1449652964.68
-https://github.com/divio/djangocms-link/archive/master.zip?1449652964.68
-https://github.com/divio/djangocms-style/archive/master.zip?1449652964.68
+https://github.com/divio/djangocms-column/archive/master.zip?1449652964.68#egg=djangocms-column
+https://github.com/divio/djangocms-flash/archive/master.zip?1449652964.68#egg=djangocms-flash
+https://github.com/divio/djangocms-googlemap/archive/master.zip?1449652964.68#egg=djangocms-googlemap
+https://github.com/divio/djangocms-inherit/archive/master.zip?1449652964.68#egg=djangocms-inherit
+https://github.com/divio/djangocms-link/archive/master.zip?1449652964.68#egg=djangocms-link
+https://github.com/divio/djangocms-style/archive/master.zip?1449652964.68#egg=djangocms-style
 easy_thumbnails
 django-filer>=0.9.12
 cmsplugin-filer>=0.10.2
@@ -23,3 +23,6 @@ six
 
 # additional requirements
 dj-database-url
+whitenoise
+gunicorn
+psycopg2
