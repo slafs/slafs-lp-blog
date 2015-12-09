@@ -22,7 +22,7 @@ django-sekizai>=0.7
 six
 
 # additional requirements
-dj-database-url
-whitenoise
-gunicorn
-psycopg2
+dj-database-url==0.3.0
+whitenoise==2.0.6
+gunicorn==19.4.1
+psycopg2==2.6.1
