@@ -26,3 +26,12 @@ The site is deployed on Heroku.
 - Optionally, gather statifiles by doing `python ./manage.py collectstatic`.
 - Run a development server `python ./manage.py runserver` and visit http://127.0.0.1:8000 to see the site.
 - Deploy to heroku (learn more on: https://devcenter.heroku.com/articles/getting-started-with-django)
+
+# idea
+
+The idea is to have django-cms `placeholder` (`lp_placeholder`) tag that recognizes whether the user has
+access to the content or not (which I didn't manage to do).
+
+You can see my efforts in `paid_content/templatetags/paid_content_tags.py` and
+`slafs_blog/templates/base.html`.
+
