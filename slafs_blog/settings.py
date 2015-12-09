@@ -182,16 +182,6 @@ CMS_PLACEHOLDER_CONF = {}
 
 DATABASES = {'default': dj_database_url.config(default='sqlite:////tmp/project.db')}
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'HOST': '',
-        'NAME': '/tmp/project.db',
-        'PASSWORD': '',
-        'PORT': '',
-        'USER': ''
-    }
-}
 
 MIGRATION_MODULES = {
     'cmsplugin_filer_image': 'cmsplugin_filer_image.migrations_django',
