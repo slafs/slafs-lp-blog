@@ -21,12 +21,18 @@ class PaidContentPlaceholder(Placeholder):
         # TODO: check with django-cms permissions
         if request.user.is_authenticated():
             return content
-
-        # TODO: how to determine whther the user has access to the content or not???
-
         page = request.current_page
         lp_client = request.laterpay
-        item_def = ItemDefinition("{0}-{1}".format(page.id, name), "EUR99", "DE19", request.build_absolute_uri(), "Example Article 1000")
+
+        article_id = "{0}-{1}".format(page.id, name)
+
+        data = lp_client.get_access(article_id)
+        article_acces = data.get('articles', {}).get(article_id, {}).get('access', False)
+
+        if article_acces is True:
+            return content
+
+        item_def = ItemDefinition(article_id, "EUR99", None, request.build_absolute_uri(), "Example Article 1000", cp=lp_client.cp_key)
         url = lp_client.get_add_url(item_def)
         return '''<a href="#" data-laterpay="{0}" class="paylater">Use now pay later for 0,99 EUR</a>'''.format(url)
 
