@@ -7,6 +7,9 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+        <link rel="stylesheet" href="https://lpstatic.net/client/1.0.0/laterpay-dialog/css/dialog.css">
+
         {% render_block "css" %}
     </head>
     <body>
@@ -32,6 +35,17 @@
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+        <script src="https://lpstatic.net/yui/3.17.2/build/yui/yui-min.js"></script>
+        <script src="https://lpstatic.net/client/1.0.0/config.js"></script>
+
+        <script>
+        YUI().use('node', 'laterpay-dialog', 'laterpay-iframe', 'laterpay-easyxdm', function(Y) {
+            var dm = new Y.LaterPay.DialogManager();
+            dm.attachToLinks(".paylater", true);
+        });
+        </script>
+
         {% render_block "js" %}
     </body>
 </html>

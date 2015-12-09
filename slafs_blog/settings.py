@@ -96,6 +96,7 @@ TEMPLATES = [
 
 
 MIDDLEWARE_CLASSES = (
+    'djlaterpay.middleware.LPTokenMiddleware',
     'cms.middleware.utils.ApphookReloadMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -107,7 +108,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
-    'cms.middleware.language.LanguageCookieMiddleware'
+    'cms.middleware.language.LanguageCookieMiddleware',
 )
 
 INSTALLED_APPS = (
@@ -140,7 +141,8 @@ INSTALLED_APPS = (
     'djangocms_inherit',
     'djangocms_link',
     'reversion',
-    'slafs_blog'
+    'slafs_blog',
+    'paid_content',
 )
 
 LANGUAGES = (
@@ -169,7 +171,8 @@ CMS_LANGUAGES = {
 CMS_TEMPLATES = (
     # Customize this
     ('page.html', 'Page'),
-    ('feature.html', 'Page with Feature')
+    ('feature.html', 'Page with Feature'),
+    ('page_with_paid_content.html', 'Page with LP content'),
 )
 
 CMS_PERMISSION = True
@@ -200,3 +203,8 @@ THUMBNAIL_PROCESSORS = (
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+LP_CONTENT_PROVIDER_KEY = 'wY7ABKutZsYFHYBjCzvgAb'
+LP_SECRET = '178d34bfd40c4fbc9b6b9dedae9ed8dd'
+LP_API_ROOT = 'https://api.testing.laterpaytest.net'
+LP_WEB_ROOT = 'https://web.testing.laterpaytest.net'
