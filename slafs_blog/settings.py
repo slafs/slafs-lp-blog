@@ -1,4 +1,6 @@
 import os
+import dj_database_url
+
 gettext = lambda s: s
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
 """
@@ -14,7 +16,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,31 +24,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'bcog(q%hvd%ntal$%ku%xe_o+e80#em+)#6!i9in=!56$%(53&'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'bcog(q%hvd%ntal$%ku%xe_o+e80#em+)#6!i9in=!56$%(53&')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() in ('true', 'on', '1')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
-
-
-
-
 ROOT_URLCONF = 'slafs_blog.urls'
 
-
-
 WSGI_APPLICATION = 'slafs_blog.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-
 
 
 # Internationalization
@@ -81,25 +70,25 @@ SITE_ID = 1
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'slafs_blog', 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'slafs_blog', 'templates'), ],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
-    'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.request',
-    'django.core.context_processors.media',
-    'django.core.context_processors.csrf',
-    'django.core.context_processors.tz',
-    'sekizai.context_processors.sekizai',
-    'django.core.context_processors.static',
-    'cms.context_processors.cms_settings'
+                'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.i18n',
+                'django.core.context_processors.debug',
+                'django.core.context_processors.request',
+                'django.core.context_processors.media',
+                'django.core.context_processors.csrf',
+                'django.core.context_processors.tz',
+                'sekizai.context_processors.sekizai',
+                'django.core.context_processors.static',
+                'cms.context_processors.cms_settings'
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-    'django.template.loaders.eggs.Loader'
+                'django.template.loaders.app_directories.Loader',
+                'django.template.loaders.eggs.Loader'
             ],
         },
     },
@@ -155,12 +144,12 @@ INSTALLED_APPS = (
 )
 
 LANGUAGES = (
-    ## Customize this
+    # Customize this
     ('en', gettext('en')),
 )
 
 CMS_LANGUAGES = {
-    ## Customize this
+    # Customize this
     'default': {
         'public': True,
         'hide_untranslated': False,
@@ -178,7 +167,7 @@ CMS_LANGUAGES = {
 }
 
 CMS_TEMPLATES = (
-    ## Customize this
+    # Customize this
     ('page.html', 'Page'),
     ('feature.html', 'Page with Feature')
 )
@@ -186,6 +175,12 @@ CMS_TEMPLATES = (
 CMS_PERMISSION = True
 
 CMS_PLACEHOLDER_CONF = {}
+
+
+# Database
+# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+
+DATABASES = {'default': dj_database_url.config(default='sqlite:////tmp/project.db')}
 
 DATABASES = {
     'default': {

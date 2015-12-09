@@ -20,3 +20,6 @@ html5lib
 Pillow>=2.3
 django-sekizai>=0.7
 six
+
+# additional requirements
+dj-database-url
