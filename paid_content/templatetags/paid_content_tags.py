@@ -15,8 +15,15 @@ class PaidContentPlaceholder(Placeholder):
         content = super(PaidContentPlaceholder, self).render_tag(context, name, extra_bits, nodelist)
         if not content:
             return content
-        # TODO: how to determine whther the user has access to the content or not???
         request = context['request']
+
+        # for now show the content to the logged in user
+        # TODO: check with django-cms permissions
+        if request.user.is_authenticated():
+            return content
+
+        # TODO: how to determine whther the user has access to the content or not???
+
         page = request.current_page
         lp_client = request.laterpay
         item_def = ItemDefinition("{0}-{1}".format(page.id, name), "EUR99", "DE19", request.build_absolute_uri(), "Example Article 1000")
