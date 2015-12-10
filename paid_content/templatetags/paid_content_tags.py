@@ -32,7 +32,13 @@ class PaidContentPlaceholder(Placeholder):
         if article_acces is True:
             return content
 
-        item_def = ItemDefinition(article_id, "EUR99", None, request.build_absolute_uri(), "Example Article 1000", cp=lp_client.cp_key)
+        item_def = ItemDefinition(item_id=article_id,
+                                  pricing="EUR99",
+                                  url=request.build_absolute_uri(),
+                                  title="Example Article 1000",
+                                  cp=lp_client.cp_key
+                                  )
+
         url = lp_client.get_add_url(item_def)
         return '''<a href="#" data-laterpay="{0}" class="paylater">Use now pay later for 0,99 EUR</a>'''.format(url)
 
